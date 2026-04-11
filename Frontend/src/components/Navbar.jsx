@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const handleGoogleLoginSuccess = (credentialResponse) => {
     console.log("Autentificare Google reușită:", credentialResponse);
-    fetch("http://localhost:8000/api/auth/google", {
+    fetch("/api/auth/google", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token: credentialResponse.credential }),

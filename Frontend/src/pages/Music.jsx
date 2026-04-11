@@ -19,13 +19,10 @@ const Music = () => {
 
     setLoading(true);
     try {
-      const response = await axios.get(
-        "http://localhost:8000/api/music/search",
-        {
-          params: { query },
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
+      const response = await axios.get("/api/music/search", {
+        params: { query },
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setSongs(response.data || []);
     } catch (error) {
       console.error("Search error:", error.response?.data || error.message);
@@ -56,14 +53,11 @@ const Music = () => {
     setLoading(true);
     setSongs([]);
     try {
-      const response = await axios.get(
-        "http://localhost:8000/api/music/recommend",
-        {
-          params: { mood: moodForApi },
-          headers: { Authorization: `Bearer ${token}` },
-          timeout: 60000,
-        },
-      );
+      const response = await axios.get("/api/music/recommend", {
+        params: { mood: moodForApi },
+        headers: { Authorization: `Bearer ${token}` },
+        timeout: 60000,
+      });
       if (response.data.tracks?.length > 0) {
         setSongs(response.data.tracks);
         setDetectedMood(response.data.moodDetails.classifiedAs || mood);
@@ -85,7 +79,7 @@ const Music = () => {
 
     try {
       await axios.post(
-        "http://localhost:8000/api/usermusic/liked",
+        "/api/usermusic/liked",
         {
           songId: song.id || "",
           name: song.name || "",

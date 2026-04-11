@@ -4,7 +4,7 @@ import { GoogleLogin } from "@react-oauth/google";
 export default function SignIn() {
   const handleLoginSuccess = async (credentialResponse) => {
     try {
-      const res = await fetch("http://localhost:8000/api/auth/google", {
+      const res = await fetch("/api/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: credentialResponse.credential }),

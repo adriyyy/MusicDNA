@@ -23,14 +23,11 @@ const Dashboard = () => {
 
     const fetchPersonalized = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:8000/api/usermusic/personalmusic",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const res = await axios.get("/api/usermusic/personalmusic", {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
 
         setTracks(res.data.tracks);
         setBasedOn(moodLabelsRo[res.data.basedOn] || res.data.basedOn);

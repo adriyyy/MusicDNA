@@ -27,12 +27,9 @@ const StatsDashboard = () => {
           return;
         }
 
-        const likedRes = await axios.get(
-          "http://localhost:8000/api/usermusic/userliked",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        );
+        const likedRes = await axios.get("/api/usermusic/userliked", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         const songs = likedRes.data || [];
         setLikedSongs(songs);
@@ -51,13 +48,10 @@ const StatsDashboard = () => {
 
         for (const song of songs) {
           try {
-            const res = await axios.get(
-              "http://localhost:8000/api/usermusic/fetchtrack",
-              {
-                params: { name: song.name, artist: song.artist },
-                headers: { Authorization: `Bearer ${token}` },
-              },
-            );
+            const res = await axios.get("/api/usermusic/fetchtrack", {
+              params: { name: song.name, artist: song.artist },
+              headers: { Authorization: `Bearer ${token}` },
+            });
 
             artMap[song.id] = res.data.albumArt || null;
           } catch {
@@ -80,7 +74,7 @@ const StatsDashboard = () => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.delete(`http://localhost:8000/api/usermusic/liked/${id}`, {
+      await axios.delete(`/api/usermusic/liked/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
