@@ -153,7 +153,7 @@ const StatsDashboard = () => {
       <div className="mb-8 text-lg text-center text-white">
         {mostMood && (
           <p>
-            Îți place în general 🎧{" "}
+            Îți place în general muzica de tip 🎧{" "}
             <strong>{moodLabelsRo[mostMood] || mostMood}</strong>
           </p>
         )}
